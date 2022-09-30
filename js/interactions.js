@@ -12,21 +12,21 @@ const populateFilters = (data) => {
     .join("button")
       .attr("class", d => `filter filter-${d.id} ${d.isActive ? "active" : ""}`)
       .text(d => d.label)
-      .on("click", (event, selection) => {
+      .on("click", (e, d) => {
 
         // Handle buttons active state
         d3.selectAll(".filter")
-          .classed("active", d => selection.id === d.id ? true : false);
+          .classed("active", option => option.id === d.id ? true : false);
 
         // If user clicked on a button that is not yet active
-        if (!selection.isActive) {
+        if (!d.isActive) {
 
           // Call the function to filter the histogram
-          filterHistogram(selection.id, data);
+          filterHistogram(d.id, data);
 
           // Update isActive states in the filters array
           filters.forEach(filter => {
-            filter.isActive = selection.id === filter.id ? true : false;
+            filter.isActive = d.id === filter.id ? true : false;
 
           });
         }
