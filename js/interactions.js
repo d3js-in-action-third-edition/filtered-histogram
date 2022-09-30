@@ -45,12 +45,14 @@ const filterHistogram = (selectedOption, data) => {
   // Update the bins
   const binGenerator = d3.bin()
     .value(d => d.salary);
-  const bins = binGenerator(updatedData);
+  const updatedBins = binGenerator(updatedData);
 
   // Update the histogram
   d3.selectAll("#histogram rect")
-    .data(bins)
+    .data(updatedBins)
     .transition()
+      .duration(500)
+      .ease(d3.easeCubicOut)
       .attr("y", d => yScale(d.length))
       .attr("height", d => innerHeight - yScale(d.length));
 
