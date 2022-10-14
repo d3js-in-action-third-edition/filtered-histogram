@@ -1,9 +1,6 @@
-const filters = [
-  { id: "all", label: "All", isActive: true },
-  { id: "female", label: "Women", isActive: false },
-  { id: "male", label: "Men", isActive: false },
-];
-
+/*************************************/
+/*  Create and populate the filters  */
+/*************************************/
 const populateFilters = (data) => {
 
   d3.select("#filters")
@@ -35,6 +32,10 @@ const populateFilters = (data) => {
 
 };
 
+
+/********************************/
+/*   Handle clicks on filters   */
+/********************************/
 const filterHistogram = (selectedOption, data) => {
   
   // Filter the original data based on the selected option
